@@ -2,8 +2,8 @@ package me.zhyd.oauth.config;
 
 import com.xkcoding.http.config.HttpConfig;
 import lombok.*;
-import me.zhyd.oauth.enums.scope.AuthScope;
 import me.zhyd.oauth.model.AuthCallback;
+import me.zhyd.oauth.utils.StringUtils;
 
 import java.util.List;
 
@@ -38,7 +38,10 @@ public class AuthConfig {
     /**
      * 支付宝公钥：当选择支付宝登录时，该值可用
      * 对应“RSA2(SHA256)密钥”中的“支付宝公钥”
+     *
+     * @deprecated 请使用AuthAlipayRequest的构造方法设置"alipayPublicKey"
      */
+    @Deprecated
     private String alipayPublicKey;
 
     /**
@@ -66,13 +69,24 @@ public class AuthConfig {
     private String agentId;
 
     /**
-     * 使用 Coding 登录时，需要传该值。
-     * <p>
-     * 团队域名前缀，比如以“ https://justauth.coding.net/ ”为例，{@code codingGroupName} = justauth
+     * 企业微信第三方授权用户类型，member|admin
      *
-     * @since 1.15.5
+     * @since 1.10.0
      */
-    private String codingGroupName;
+    private String usertype;
+
+    /**
+     * 域名前缀。
+     * <p>
+     * 使用 Coding 登录和 Okta 登录时，需要传该值。
+     * <p>
+     * Coding 登录：团队域名前缀，比如以“ https://justauth.coding.net ”为例，{@code domainPrefix} = justauth
+     * <p>
+     * Okta 登录：Okta 账号域名前缀，比如以“ https://justauth.okta.com ”为例，{@code domainPrefix} = justauth
+     *
+     * @since 1.16.0
+     */
+    private String domainPrefix;
 
     /**
      * 针对国外服务可以单独设置代理
@@ -131,4 +145,40 @@ public class AuthConfig {
      * @since 1.15.9
      */
     private String packId;
+
+    /**
+     * 是否开启 PKCE 模式，该配置仅用于支持 PKCE 模式的平台，针对无服务应用，不推荐使用隐式授权，推荐使用 PKCE 模式
+     *
+     * @since 1.15.9
+     */
+    private boolean pkce;
+
+    /**
+     * Okta 授权服务器的 ID， 默认为 default。如果要使用自定义授权服务，此处传实际的授权服务器 ID（一个随机串）
+     * <p>
+     * 创建自定义授权服务器，请参考：
+     * <p>
+     * ① https://developer.okta.com/docs/concepts/auth-servers
+     * <p>
+     * ② https://developer.okta.com/docs/guides/customize-authz-server
+     *
+     * @since 1.16.0
+     */
+    private String authServerId;
+    /**
+     * 忽略校验 {@code redirectUri} 参数，默认不开启。当 {@code ignoreCheckRedirectUri} 为 {@code true} 时，
+     * {@link me.zhyd.oauth.utils.AuthChecker#checkConfig(AuthConfig, AuthSource)} 将不会校验 {@code redirectUri} 的合法性。
+     *
+     * @since 1.16.1
+     */
+    private boolean ignoreCheckRedirectUri;
+
+    /**
+     * 适配 builder 模式 set 值的情况
+     *
+     * @return authServerId
+     */
+    public String getAuthServerId() {
+        return StringUtils.isEmpty(authServerId) ? "default" : authServerId;
+    }
 }

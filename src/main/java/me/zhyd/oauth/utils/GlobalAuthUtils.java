@@ -101,15 +101,18 @@ public class GlobalAuthUtils {
      * @return map
      */
     public static Map<String, String> parseStringToMap(String accessTokenStr) {
-        Map<String, String> res = new HashMap<>(6);
+        Map<String, String> res = null;
         if (accessTokenStr.contains("&")) {
             String[] fields = accessTokenStr.split("&");
+            res = new HashMap<>((int) (fields.length / 0.75 + 1));
             for (String field : fields) {
                 if (field.contains("=")) {
                     String[] keyValue = field.split("=");
                     res.put(GlobalAuthUtils.urlDecode(keyValue[0]), keyValue.length == 2 ? GlobalAuthUtils.urlDecode(keyValue[1]) : null);
                 }
             }
+        } else {
+            res = new HashMap<>(0);
         }
         return res;
     }
@@ -146,7 +149,7 @@ public class GlobalAuthUtils {
         if (StringUtils.isEmpty(url)) {
             return false;
         }
-        return url.startsWith("http://");
+        return url.startsWith("http://") || url.startsWith("http%3A%2F%2F");
     }
 
     /**
@@ -159,7 +162,7 @@ public class GlobalAuthUtils {
         if (StringUtils.isEmpty(url)) {
             return false;
         }
-        return url.startsWith("https://");
+        return url.startsWith("https://") || url.startsWith("https%3A%2F%2F");
     }
 
     /**
@@ -170,6 +173,19 @@ public class GlobalAuthUtils {
      */
     public static boolean isLocalHost(String url) {
         return StringUtils.isEmpty(url) || url.contains("127.0.0.1") || url.contains("localhost");
+    }
+
+    /**
+     * 是否为https协议或本地主机（域名）
+     *
+     * @param url 待验证的url
+     * @return true: https协议或本地主机 false: 非https协议或本机主机
+     */
+    public static boolean isHttpsProtocolOrLocalHost(String url) {
+        if (StringUtils.isEmpty(url)) {
+            return false;
+        }
+        return isHttpsProtocol(url) || isLocalHost(url);
     }
 
 

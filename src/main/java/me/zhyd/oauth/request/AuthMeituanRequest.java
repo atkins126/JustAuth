@@ -35,13 +35,13 @@ public class AuthMeituanRequest extends AuthDefaultRequest {
 
     @Override
     protected AuthToken getAccessToken(AuthCallback authCallback) {
-        Map<String, String> form = new HashMap<>(4);
+        Map<String, String> form = new HashMap<>(7);
         form.put("app_id", config.getClientId());
         form.put("secret", config.getClientSecret());
         form.put("code", authCallback.getCode());
         form.put("grant_type", "authorization_code");
 
-        String response = new HttpUtils(config.getHttpConfig()).post(source.accessToken(), form, false);
+        String response = new HttpUtils(config.getHttpConfig()).post(source.accessToken(), form, false).getBody();
         JSONObject object = JSONObject.parseObject(response);
 
         this.checkResponse(object);
@@ -55,12 +55,12 @@ public class AuthMeituanRequest extends AuthDefaultRequest {
 
     @Override
     protected AuthUser getUserInfo(AuthToken authToken) {
-        Map<String, String> form = new HashMap<>(3);
+        Map<String, String> form = new HashMap<>(5);
         form.put("app_id", config.getClientId());
         form.put("secret", config.getClientSecret());
         form.put("access_token", authToken.getAccessToken());
 
-        String response = new HttpUtils(config.getHttpConfig()).post(source.userInfo(), form, false);
+        String response = new HttpUtils(config.getHttpConfig()).post(source.userInfo(), form, false).getBody();
         JSONObject object = JSONObject.parseObject(response);
 
         this.checkResponse(object);
@@ -79,13 +79,13 @@ public class AuthMeituanRequest extends AuthDefaultRequest {
 
     @Override
     public AuthResponse refresh(AuthToken oldToken) {
-        Map<String, String> form = new HashMap<>(4);
+        Map<String, String> form = new HashMap<>(7);
         form.put("app_id", config.getClientId());
         form.put("secret", config.getClientSecret());
         form.put("refresh_token", oldToken.getRefreshToken());
         form.put("grant_type", "refresh_token");
 
-        String response = new HttpUtils(config.getHttpConfig()).post(source.refresh(), form, false);
+        String response = new HttpUtils(config.getHttpConfig()).post(source.refresh(), form, false).getBody();
         JSONObject object = JSONObject.parseObject(response);
 
         this.checkResponse(object);

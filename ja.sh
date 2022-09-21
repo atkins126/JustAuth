@@ -15,6 +15,18 @@ case "$1" in
   'updv')
     bin/updVersion.sh $2
 	;;
+  'ppd')
+    bin/pull-dev.sh
+	;;
+  'pd')
+    bin/push-dev.sh
+	;;
+  'p')
+    bin/push.sh
+	;;
+  'd')
+    bin/deploy.sh
+	;;
   *)
     help
 esac

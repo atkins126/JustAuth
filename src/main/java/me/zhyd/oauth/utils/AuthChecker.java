@@ -25,18 +25,16 @@ public class AuthChecker {
      * @since 1.6.1-beta
      */
     public static boolean isSupportedAuth(AuthConfig config, AuthSource source) {
-        boolean isSupported = StringUtils.isNotEmpty(config.getClientId()) && StringUtils.isNotEmpty(config.getClientSecret()) && StringUtils.isNotEmpty(config.getRedirectUri());
-        if (isSupported && AuthDefaultSource.ALIPAY == source) {
-            isSupported = StringUtils.isNotEmpty(config.getAlipayPublicKey());
-        }
+        boolean isSupported = StringUtils.isNotEmpty(config.getClientId())
+            && StringUtils.isNotEmpty(config.getClientSecret());
         if (isSupported && AuthDefaultSource.STACK_OVERFLOW == source) {
             isSupported = StringUtils.isNotEmpty(config.getStackOverflowKey());
         }
         if (isSupported && AuthDefaultSource.WECHAT_ENTERPRISE == source) {
             isSupported = StringUtils.isNotEmpty(config.getAgentId());
         }
-        if (isSupported && AuthDefaultSource.CODING == source) {
-            isSupported = StringUtils.isNotEmpty(config.getCodingGroupName());
+        if (isSupported && (AuthDefaultSource.CODING == source || AuthDefaultSource.OKTA == source)) {
+            isSupported = StringUtils.isNotEmpty(config.getDomainPrefix());
         }
         if (isSupported && AuthDefaultSource.XMLY == source) {
             isSupported = StringUtils.isNotEmpty(config.getDeviceId()) && null != config.getClientOsType();
@@ -56,6 +54,12 @@ public class AuthChecker {
      */
     public static void checkConfig(AuthConfig config, AuthSource source) {
         String redirectUri = config.getRedirectUri();
+        if (config.isIgnoreCheckRedirectUri()) {
+            return;
+        }
+        if (StringUtils.isEmpty(redirectUri)) {
+            throw new AuthException(AuthResponseStatus.ILLEGAL_REDIRECT_URI, source);
+        }
         if (!GlobalAuthUtils.isHttpProtocol(redirectUri) && !GlobalAuthUtils.isHttpsProtocol(redirectUri)) {
             throw new AuthException(AuthResponseStatus.ILLEGAL_REDIRECT_URI, source);
         }
@@ -64,9 +68,14 @@ public class AuthChecker {
             // Facebook's redirect uri must use the HTTPS protocol
             throw new AuthException(AuthResponseStatus.ILLEGAL_REDIRECT_URI, source);
         }
-        // 支付宝在创建回调地址时，不允许使用localhost或者127.0.0.1
-        if (AuthDefaultSource.ALIPAY == source && GlobalAuthUtils.isLocalHost(redirectUri)) {
-            // The redirect uri of alipay is forbidden to use localhost or 127.0.0.1
+        // 微软的回调地址必须为https的链接或者localhost,不允许使用http
+        if (AuthDefaultSource.MICROSOFT == source && !GlobalAuthUtils.isHttpsProtocolOrLocalHost(redirectUri)) {
+            // Microsoft's redirect uri must use the HTTPS or localhost
+            throw new AuthException(AuthResponseStatus.ILLEGAL_REDIRECT_URI, source);
+        }
+        // 微软中国的回调地址必须为https的链接或者localhost,不允许使用http
+        if (AuthDefaultSource.MICROSOFT_CN == source && !GlobalAuthUtils.isHttpsProtocolOrLocalHost(redirectUri)) {
+            // Microsoft's redirect uri must use the HTTPS or localhost
             throw new AuthException(AuthResponseStatus.ILLEGAL_REDIRECT_URI, source);
         }
     }
@@ -86,9 +95,7 @@ public class AuthChecker {
             return;
         }
         String code = callback.getCode();
-        if (source == AuthDefaultSource.ALIPAY) {
-            code = callback.getAuth_code();
-        } else if (source == AuthDefaultSource.HUAWEI) {
+        if (source == AuthDefaultSource.HUAWEI) {
             code = callback.getAuthorization_code();
         }
         if (StringUtils.isEmpty(code)) {

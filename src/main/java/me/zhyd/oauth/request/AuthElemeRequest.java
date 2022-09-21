@@ -45,14 +45,14 @@ public class AuthElemeRequest extends AuthDefaultRequest {
 
     @Override
     protected AuthToken getAccessToken(AuthCallback authCallback) {
-        Map<String, String> form = new HashMap<>(4);
+        Map<String, String> form = new HashMap<>(7);
         form.put("client_id", config.getClientId());
         form.put("redirect_uri", config.getRedirectUri());
         form.put("code", authCallback.getCode());
         form.put("grant_type", "authorization_code");
 
         HttpHeader httpHeader = this.buildHeader(CONTENT_TYPE_FORM, this.getRequestId(), true);
-        String response = new HttpUtils(config.getHttpConfig()).post(source.accessToken(), form, httpHeader, false);
+        String response = new HttpUtils(config.getHttpConfig()).post(source.accessToken(), form, httpHeader, false).getBody();
         JSONObject object = JSONObject.parseObject(response);
 
         this.checkResponse(object);
@@ -67,13 +67,13 @@ public class AuthElemeRequest extends AuthDefaultRequest {
 
     @Override
     protected AuthUser getUserInfo(AuthToken authToken) {
-        Map<String, Object> parameters = new HashMap<>();
+        Map<String, Object> parameters = new HashMap<>(4);
         // 获取商户账号信息的API接口名称
         String action = "eleme.user.getUser";
         // 时间戳，单位秒。API服务端允许客户端请求最大时间误差为正负5分钟。
         final long timestamp = System.currentTimeMillis();
         // 公共参数
-        Map<String, Object> metasHashMap = new HashMap<>();
+        Map<String, Object> metasHashMap = new HashMap<>(4);
         metasHashMap.put("app_key", config.getClientId());
         metasHashMap.put("timestamp", timestamp);
         String signature = GlobalAuthUtils.generateElemeSignature(config.getClientId(), config.getClientSecret(), timestamp, action, authToken
@@ -91,7 +91,7 @@ public class AuthElemeRequest extends AuthDefaultRequest {
         paramsMap.put("signature", signature);
 
         HttpHeader httpHeader = this.buildHeader(CONTENT_TYPE_JSON, requestId, false);
-        String response = new HttpUtils(config.getHttpConfig()).post(source.userInfo(), JSONObject.toJSONString(paramsMap), httpHeader);
+        String response = new HttpUtils(config.getHttpConfig()).post(source.userInfo(), JSONObject.toJSONString(paramsMap), httpHeader).getBody();
 
         JSONObject object = JSONObject.parseObject(response);
 
@@ -118,12 +118,12 @@ public class AuthElemeRequest extends AuthDefaultRequest {
 
     @Override
     public AuthResponse refresh(AuthToken oldToken) {
-        Map<String, String> form = new HashMap<>(2);
+        Map<String, String> form = new HashMap<>(4);
         form.put("refresh_token", oldToken.getRefreshToken());
         form.put("grant_type", "refresh_token");
 
         HttpHeader httpHeader = this.buildHeader(CONTENT_TYPE_FORM, this.getRequestId(), true);
-        String response = new HttpUtils(config.getHttpConfig()).post(source.refresh(), form, httpHeader, false);
+        String response = new HttpUtils(config.getHttpConfig()).post(source.refresh(), form, httpHeader, false).getBody();
 
         JSONObject object = JSONObject.parseObject(response);
 

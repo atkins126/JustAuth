@@ -41,12 +41,12 @@ public class AuthJdRequest extends AuthDefaultRequest {
     @Override
     protected AuthToken getAccessToken(AuthCallback authCallback) {
 
-        Map<String, String> params = new HashMap<>(5);
+        Map<String, String> params = new HashMap<>(7);
         params.put("app_key", config.getClientId());
         params.put("app_secret", config.getClientSecret());
         params.put("grant_type", "authorization_code");
         params.put("code", authCallback.getCode());
-        String response = new HttpUtils(config.getHttpConfig()).post(source.accessToken(), params, false);
+        String response = new HttpUtils(config.getHttpConfig()).post(source.accessToken(), params, false).getBody();
         JSONObject object = JSONObject.parseObject(response);
 
         this.checkResponse(object);
@@ -70,7 +70,7 @@ public class AuthJdRequest extends AuthDefaultRequest {
             .queryParam("timestamp", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
             .queryParam("v", "2.0");
         urlBuilder.queryParam("sign", GlobalAuthUtils.generateJdSignature(config.getClientSecret(), urlBuilder.getReadOnlyParams()));
-        String response = new HttpUtils(config.getHttpConfig()).post(urlBuilder.build(true));
+        String response = new HttpUtils(config.getHttpConfig()).post(urlBuilder.build(true)).getBody();
         JSONObject object = JSONObject.parseObject(response);
 
         this.checkResponse(object);
@@ -104,12 +104,12 @@ public class AuthJdRequest extends AuthDefaultRequest {
 
     @Override
     public AuthResponse refresh(AuthToken oldToken) {
-        Map<String, String> params = new HashMap<>(5);
+        Map<String, String> params = new HashMap<>(7);
         params.put("app_key", config.getClientId());
         params.put("app_secret", config.getClientSecret());
         params.put("grant_type", "refresh_token");
         params.put("refresh_token", oldToken.getRefreshToken());
-        String response = new HttpUtils(config.getHttpConfig()).post(source.refresh(), params, false);
+        String response = new HttpUtils(config.getHttpConfig()).post(source.refresh(), params, false).getBody();
         JSONObject object = JSONObject.parseObject(response);
 
         this.checkResponse(object);

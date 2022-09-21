@@ -1,3 +1,92 @@
+## 1.16.5
+
+### 2021/10/18
+
+- 合并 PR [Github #138](https://github.com/justauth/JustAuth/pull/138)
+- 升级alipay-sdk-version的依赖版本
+- 修改用户logo的尺寸
+- 修复 alipay 登录失败的 BUG [Gitee Issue #I4E4ML](https://gitee.com/yadong.zhang/JustAuth/issues/I4E4ML)
+
+
+## 1.16.4
+
+### 2021/9/22
+
+- 合并 PR 
+  - [Github #134](https://github.com/justauth/JustAuth/pull/134)
+  - [Github #133](https://github.com/justauth/JustAuth/pull/133)
+  - [Github #132](https://github.com/justauth/JustAuth/pull/132)
+  - [Github #131](https://github.com/justauth/JustAuth/pull/131)
+- 添加微软中国(世纪华联)第三方登录，新增微软方式登录的redirectUri校验。[Gitee PR #28](https://gitee.com/yadong.zhang/JustAuth/pulls/28)
+- 升级第三方的依赖
+  -  simple-http > 1.0.5 
+  -  lombok > 1.18.20
+  -  junit > 4.13.2
+  -  fastjson > 1.2.78
+  -  alipay-sdk > 4.16.38.ALL
+
+## 1.16.3
+
+### 2021/8/15
+
+- 发布 v1.16.3
+- 新增
+  - 集成“企业微信的第三方应用”平台登录
+- PR
+  - `AuthRequst` 增加 `Builder` 构建方式，使用起来更简单。 ([#27](https://gitee.com/yadong.zhang/JustAuth/pulls/27))
+  - 使用 Github Action 添加发布快照的 workflow。 ([#126](https://github.com/justauth/JustAuth/pull/126))
+  - 新增了企业微信的第三方应用登录，`AuthWeChatEnterpriseThirdQrcodeRequest`。 ([#127](https://github.com/justauth/JustAuth/pull/127))
+  - 添加快照版本对应更详细的文档。 ([#128](https://github.com/justauth/JustAuth/pull/128))
+- 修改
+  - 在 Gitee PR ([#27](https://gitee.com/yadong.zhang/JustAuth/pulls/27)) 的基础上重构代码，增加 Builder 方式创建 AuthRequest
+  - 解决 Line 登录的错误。[#122](https://github.com/justauth/JustAuth/issues/122)
+  
+
+## 1.16.2
+
+### 2021/7/28
+
+- 发布 v1.16.2
+- 新增
+  - 集成“程序员客栈”平台登录
+- 修改
+  - 更新文档
+  - 修复“淘宝”平台授权登录后没有`uid`的问题、增加刷新token的功能
+  - 修复“Twitter”平台授权登录后获取不到用户邮箱的问题
+
+## 1.16.1
+
+### 2021/4/19
+
+- 发布 v1.16.1
+- Fix Github issue [#114](https://github.com/justauth/JustAuth/issues/114): 解决企业微信授权后,回调地址中原有的参数丢失的问题
+- Fix Github issue [#82](https://github.com/justauth/JustAuth/issues/82): 抖音平台支持自定义 scope
+- Fix Github issue [#92](https://github.com/justauth/JustAuth/issues/92): 增加忽略校验 redirectUri 的配置
+- Merge Github PR [#115](https://github.com/justauth/JustAuth/pull/115)
+- 升级 `fastjson` 到 `v1.2.76`
+  
+## 1.16.0
+
+### 2021/4/7
+
+- 发布 v1.16.0
+- 新增
+  - 集成 Amazon 平台登录
+  - 集成 Slack 平台登录
+  - 集成 LINE 平台登录
+  - 集成 Okta 平台登录
+  - 集成钉钉账号登录
+- 修改 
+  - 【**重要**】 `AuthConfig`中的`codingGroupName`参数更名为`domainPrefix`，针对此类平台提供通用的配置。
+  - 修改 `AuthFacebookScope` 中的默认 scope，解决 justauth-demo 项目中使用 facebook 报错的问题
+  - 升级 facebook 的 api 到 v10.0 版本
+  - 优化部分代码
+  - 优化 Map 声明时的初始容量，避免频繁扩容
+  - 更新 README 文档
+- PR
+  - 合并 [Github #110](https://github.com/justauth/JustAuth/pull/110) 
+  - 合并 [Gitee #22](https://gitee.com/yadong.zhang/JustAuth/pulls/22) 
+
 ## 1.15.9
 
 ### 2021/1/1
@@ -7,9 +96,9 @@
     - 修复并正式启用 飞书 平台的第三方登录
     - AuthToken 类中新增 `refreshTokenExpireIn` 记录 refresh token 的有效期
 - PR
-    - 合并 [Github #101](https://gitee.com/yadong.zhang/JustAuth/pulls/101)：支持喜马拉雅登录
-    - 合并 [Github #105](https://gitee.com/yadong.zhang/JustAuth/pulls/105)：支持企业微信网页授权登录
-    - 合并 [Github #107](https://gitee.com/yadong.zhang/JustAuth/pulls/107)：添加AuthAlipayRequest网络代理构造器，解决 Github Issue [#102](https://github.com/justauth/JustAuth/issues/102)
+    - 合并 [Github #101](https://github.com/justauth/JustAuth/pull/101) ：支持喜马拉雅登录
+    - 合并 [Github #105](https://github.com/justauth/JustAuth/pull/105) ：支持企业微信网页授权登录
+    - 合并 [Github #107](https://github.com/justauth/JustAuth/pull/107) ：添加AuthAlipayRequest网络代理构造器，解决 Github Issue [#102](https://github.com/justauth/JustAuth/issues/102)
 - 修改
     - 修改喜马拉雅配置参数，将`ClientOsType`参数提到 AuthConfig 中
     - AuthChecker 中增加对喜马拉雅平台的校验

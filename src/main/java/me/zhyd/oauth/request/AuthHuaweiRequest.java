@@ -47,14 +47,14 @@ public class AuthHuaweiRequest extends AuthDefaultRequest {
      */
     @Override
     protected AuthToken getAccessToken(AuthCallback authCallback) {
-        Map<String, String> form = new HashMap<>(5);
+        Map<String, String> form = new HashMap<>(8);
         form.put("grant_type", "authorization_code");
         form.put("code", authCallback.getAuthorization_code());
         form.put("client_id", config.getClientId());
         form.put("client_secret", config.getClientSecret());
         form.put("redirect_uri", config.getRedirectUri());
 
-        String response = new HttpUtils(config.getHttpConfig()).post(source.accessToken(), form, false);
+        String response = new HttpUtils(config.getHttpConfig()).post(source.accessToken(), form, false).getBody();
         return getAuthToken(response);
     }
 
@@ -67,13 +67,13 @@ public class AuthHuaweiRequest extends AuthDefaultRequest {
      */
     @Override
     protected AuthUser getUserInfo(AuthToken authToken) {
-        Map<String, String> form = new HashMap<>(4);
+        Map<String, String> form = new HashMap<>(7);
         form.put("nsp_ts", System.currentTimeMillis() + "");
         form.put("access_token", authToken.getAccessToken());
         form.put("nsp_fmt", "JS");
         form.put("nsp_svc", "OpenUP.User.getInfo");
 
-        String response = new HttpUtils(config.getHttpConfig()).post(source.userInfo(), form, false);
+        String response = new HttpUtils(config.getHttpConfig()).post(source.userInfo(), form, false).getBody();
         JSONObject object = JSONObject.parseObject(response);
 
         this.checkResponse(object);
@@ -100,13 +100,13 @@ public class AuthHuaweiRequest extends AuthDefaultRequest {
      */
     @Override
     public AuthResponse refresh(AuthToken authToken) {
-        Map<String, String> form = new HashMap<>(4);
+        Map<String, String> form = new HashMap<>(7);
         form.put("client_id", config.getClientId());
         form.put("client_secret", config.getClientSecret());
         form.put("refresh_token", authToken.getRefreshToken());
         form.put("grant_type", "refresh_token");
 
-        String response = new HttpUtils(config.getHttpConfig()).post(source.refresh(), form, false);
+        String response = new HttpUtils(config.getHttpConfig()).post(source.refresh(), form, false).getBody();
         return AuthResponse.builder().code(SUCCESS.getCode()).data(getAuthToken(response)).build();
     }
 

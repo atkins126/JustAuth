@@ -6,16 +6,16 @@
 </p>
 <p align="center">
 	<a target="_blank" href="https://search.maven.org/search?q=JustAuth">
-		<img src="https://img.shields.io/badge/Maven%20Central-1.15.9-blue" ></img>
+		<img src="https://img.shields.io/github/v/release/justauth/JustAuth?style=flat-square" ></img>
+	</a>
+	<a target="_blank" href="https://oss.sonatype.org/content/repositories/snapshots/me/zhyd/oauth/JustAuth/">
+		<img src="https://img.shields.io/nexus/s/https/oss.sonatype.org/me.zhyd.oauth/JustAuth.svg?style=flat-square" ></img>
 	</a>
 	<a target="_blank" href="https://gitee.com/yadong.zhang/JustAuth/blob/master/LICENSE">
 		<img src="https://img.shields.io/apm/l/vim-mode.svg?color=yellow" ></img>
 	</a>
 	<a target="_blank" href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">
 		<img src="https://img.shields.io/badge/JDK-1.8+-green.svg" ></img>
-	</a>
-	<a target="_blank" href="https://apidoc.gitee.com/yadong.zhang/JustAuth/" title="API文档">
-		<img src="https://img.shields.io/badge/Api%20Docs-1.15.9-orange" ></img>
 	</a>
 	<a target="_blank" href="https://justauth.wiki" title="参考文档">
 		<img src="https://img.shields.io/badge/Docs-latest-blueviolet.svg" ></img>
@@ -31,48 +31,10 @@
 	</a>
 </p>
 
-<center>
-    <table>
-        <tr>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/gitee.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/github.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/weibo.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/dingtalk.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/baidu.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/coding.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/tencentCloud.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/oschina.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/alipay.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/qq.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/wechat.png" width="20" title="微信开放平台"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/taobao.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/google.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/facebook.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/douyin.png" width="20"></td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/linkedin.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/microsoft.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/mi.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/toutiao.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/teambition.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/renren.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/pinterest.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/stackoverflow.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/huawei.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/wechat.png" width="20" title="微信企业版"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/csdn.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/kujiale.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/gitlab.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/meituan.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/eleme.png" width="20"></td>
-            <td align="center" width="200"><img src="https://gitee.com/yadong.zhang/static/raw/master/JustAuth/twitter.png" width="20"></td>
-        </tr>
-    </table>
-    <center><a href="https://justauth.wiki" target="_blank">查看更多</a></center>
-</center>
+-------------------------------------------------------------------------------
+<p align="center">
+<img src='./docs/media/75a3c076.png' alt='star'></img>
+</p>
 
 -------------------------------------------------------------------------------
 
@@ -90,33 +52,27 @@ Docs：[Reference Doc](https://justauth.wiki)
 
 ## Quick start
 
-- Add maven dependency
+### Add maven dependency
+
+- Add JustAuth dependency
 
 These artifacts are available from Maven Central:
 ```xml
 <dependency>
     <groupId>me.zhyd.oauth</groupId>
     <artifactId>JustAuth</artifactId>
-    <version>1.15.9</version>
+  <version>{latest-version}</version>
 </dependency>
 ```
-- Using JustAuth
-```java
-// Create authorization request
-AuthRequest authRequest = new AuthGiteeRequest(AuthConfig.builder()
-        .clientId("clientId")
-        .clientSecret("clientSecret")
-        .redirectUri("redirectUri")
-        .build());
-// Generate authorization url
-authRequest.authorize("state");
-// After authorization to login, it will return: code(auth_code(Alipay only)),state, After version 1.8.0, you can use the AuthCallback as a parameter to the callback interface
-// Note: JustAuth saves state for 3 minutes by default. If it is not used within 3 minutes, the expired state will be cleared automatically.
-authRequest.login(callback);
-```
 
-Note, that since [v1.14.0](https://gitee.com/yadong.zhang/JustAuth/releases/v1.14.0) JustAuth has been integrated by default with [simple-http](https://github.com/xkcoding/simple-http) as the HTTP general interface (see the update [JustAuth 1.14.0 release! Perfect decoupling of HTTP tools](https://mp.weixin.qq.com/s?__biz=MzA3NDk3OTIwMg==&mid=2450633197&idx=1&sn=11e625b307db62b2f1c4e82f7744b2a2&chksm=88929300bfe51a16562b45592a264482ae2c74c6dbfa4a3aa9611ad4fea4a9be5b1f0545527d&token=1093833287&lang=zh_CN#rd)). Since most projects already integrate HTTP tools such as OkHttp3, apache HttpClient, and hutool-http), in order to reduce unnecessary dependencies,Starting from [v1.14.0](https://gitee.com/yadong.zhang/JustAuth/releases/v1.14.0), JustAuth will not integrate hutool-http by default. If the developer's project is new or there is no integrated HTTP implementation tool in the project, please add the corresponding HTTP implementation class by yourself. Alternative dependencies are as follows:
+> **latest-version** ：
+> - CURRENT: ![](https://img.shields.io/github/v/release/justauth/JustAuth?style=flat-square)
+> - SNAPSHOT: ![](https://img.shields.io/nexus/s/https/oss.sonatype.org/me.zhyd.oauth/JustAuth.svg?style=flat-square)
 
+
+- Add http dependency（Only need one）
+  
+> If there is already in the project, please ignore it. In addition, you need to pay special attention. If the low version of the dependency has been introduced in the project, please exclude the low version of the dependency first, and then introduce the high version or the latest version of the dependency
 
 - hutool-http
 
@@ -147,6 +103,68 @@ Note, that since [v1.14.0](https://gitee.com/yadong.zhang/JustAuth/releases/v1.1
     <version>4.4.1</version>
   </dependency>
   ```
+
+
+### Using JustAuth API
+
+#### Simple
+
+```java
+// Create authorization request
+AuthRequest authRequest = new AuthGiteeRequest(AuthConfig.builder()
+        .clientId("clientId")
+        .clientSecret("clientSecret")
+        .redirectUri("redirectUri")
+        .build());
+// Generate authorization page url
+authRequest.authorize("state");
+// Get token and userinfo
+authRequest.login(callback);
+```
+
+#### Builder 1. Use unchanging `AuthConfig`
+
+```java
+// Create authorization request
+AuthRequest authRequest = AuthRequestBuilder.builder()
+    .source("github")
+    .authConfig(AuthConfig.builder()
+        .clientId("clientId")
+        .clientSecret("clientSecret")
+        .redirectUri("redirectUri")
+        .build())
+    .build();
+```
+
+#### Builder 2. Use dynamic `AuthConfig`
+
+```java
+// Create authorization request
+AuthRequest authRequest = AuthRequestBuilder.builder()
+    .source("gitee")
+    .authConfig((source) -> {
+        // Use source to dynamically get AuthConfig
+        // Here you can flexibly take the configuration from sql or take the configuration from the configuration file
+        return AuthConfig.builder()
+            .clientId("clientId")
+            .clientSecret("clientSecret")
+            .redirectUri("redirectUri")
+            .build();
+    })
+    .build();
+```
+
+#### Builder 3. Support custom platform
+
+```java
+AuthRequest authRequest = AuthRequestBuilder.builder()
+    // Key point: configure the custom implementation of AuthSource
+    .extendSource(AuthExtendSource.values())
+    // Enum name in AuthExtendSource
+    .source("other")
+    // ... Do other things
+    .build();
+```
 
 ## Contributions
 
